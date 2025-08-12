@@ -10,7 +10,6 @@ import sszj.s.adblockerapp.api.WebApi
 import javax.inject.Singleton
 
 //4 create DI
-//first we will create a Network Module Class then annotate it with @Module and @InstallIn and pass SingletonComponent::class bcos it will single object in our project
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModules {
@@ -25,7 +24,7 @@ class NetworkModules {
     //call interface here
     @Singleton
     @Provides
-    fun providesTweetsyAPI(retrofit: Retrofit): WebApi {
+    fun providesWebAPI(retrofit: Retrofit): WebApi {
         return retrofit.create(WebApi::class.java)
 
     }

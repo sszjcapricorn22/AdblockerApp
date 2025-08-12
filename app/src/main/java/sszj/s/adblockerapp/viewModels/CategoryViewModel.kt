@@ -8,15 +8,16 @@ import kotlinx.coroutines.launch
 import sszj.s.adblockerapp.models.WebItem
 import sszj.s.adblockerapp.repository.WebRepository
 import javax.inject.Inject
+
 @HiltViewModel
 class CategoryViewModel @Inject constructor(private val repository: WebRepository) : ViewModel() {
 
-        val categories: StateFlow<List<String>>
-            get() = repository.categories
+    val categories: StateFlow<List<String>>
+        get() = repository.categories
 
-        init {
-            viewModelScope.launch {
-                repository.getCategories()
-            }
+    init {
+        viewModelScope.launch {
+            repository.getCategories()
         }
     }
+}

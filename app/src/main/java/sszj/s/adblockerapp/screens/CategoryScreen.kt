@@ -1,4 +1,5 @@
 package sszj.s.adblockerapp.screens
+
 import androidx.compose.ui.res.painterResource
 import sszj.s.adblockerapp.R
 
@@ -21,11 +22,13 @@ import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import sszj.s.adblockerapp.viewModels.CategoryViewModel
+import kotlin.collections.distinct
 
 @Composable
 fun CategoryScreen(onClick: (category: String) -> Unit) {
@@ -39,19 +42,17 @@ fun CategoryScreen(onClick: (category: String) -> Unit) {
         ) {
             Text(text = "Loading...", style = MaterialTheme.typography.headlineMedium)
         }
-    }
-    else {
+    } else {
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             contentPadding = PaddingValues(8.dp),
             verticalArrangement = Arrangement.SpaceAround,
         ) {
             items(categories.value.distinct()) {
-                CategoryItem(category = it, onClick)
+                CategoryItem(it, onClick)
             }
         }
     }
-
 
 }
 

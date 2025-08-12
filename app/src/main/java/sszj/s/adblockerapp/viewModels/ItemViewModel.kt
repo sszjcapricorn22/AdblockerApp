@@ -12,8 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ItemViewModel @Inject constructor(
-    private val repository: WebRepository,
-    private val savedStateHandle: SavedStateHandle
+    private val repository: WebRepository, private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     val tweets: StateFlow<List<WebItem>>
@@ -22,13 +21,7 @@ class ItemViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             val category = savedStateHandle.get<String>("category") ?: "Education"
-            repository.getTweets(category)
-
-            fun addAndPushWebsite(newItem: WebItem) {
-                viewModelScope.launch {
-                    repository.addAndPushWebsite(newItem)
-                }
-            }
+            repository.getWebsite(category)
         }
 
     }
